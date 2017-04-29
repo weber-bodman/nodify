@@ -5,7 +5,10 @@ socket.onopen = function(evt) {
     socket.send("42");
 };
 socket.onclose = function(evt) {console.log("Socket closed");};
-socket.onmessage = function(evt){doNotification(evt.data);};
+socket.onmessage = function(evt){
+    console.log("Message received");
+    doNotification(evt.data);
+};
 socket.onerror = function(evt) {console.log("Error: " + evt.data);};
 
 // ===
@@ -45,6 +48,37 @@ notifyMe();
 
 // Using notify.js
 
+function doNotification(payload) {
+    var myNotification = new Notify('Yo dawg!', {
+        body: payload,
+        tag: 'My unique id',
+        notifyShow: onShowNotification,
+        notifyClose: onCloseNotification,
+        notifyClick: onClickNotification,
+        notifyError: onErrorNotification,
+        timeout: 4
+    });
+    myNotification.show();
+}
+
+function onShowNotification () {
+    console.log('notification is shown!');
+}
+
+function onCloseNotification () {
+    console.log('notification is closed!');
+}
+
+function onClickNotification () {
+    console.log('notification was clicked!');
+}
+
+function onErrorNotification () {
+    console.error('Error showing notification. You may need to request permission.');
+}
+
+// ---
+
 if (!Notify.needsPermission) {
     //doNotification();
 } else if (Notify.isSupported()) {
@@ -58,18 +92,4 @@ function onPermissionGranted() {
 
 function onPermissionDenied() {
 	console.warn('Permission has been denied by the user');
-}
-
-// ---
-
-function onNotifyShow() {
-	console.log('Notification was shown!');
-}
-
-function doNotification(payload) {
-    var myNotification = new Notify('Yo dawg!', {
-        body: 'Payload: ' + payload,
-        notifyShow: onNotifyShow
-    });
-    myNotification.show();
 }
