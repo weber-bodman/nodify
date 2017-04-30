@@ -1,7 +1,7 @@
 {
   "name": "nodify",
   "version": "1.0.0",
-  "description": "Bidirectional broadcasting server using node.js and websockets",
+  "description": "Unidirectional broadcasting server using node.js and websockets",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +17,5 @@
   "license": "ISC",
   "dependencies": {
     "http-server": "^0.9.0"
-  },
-  "optionalDependencies": {
-    "notifyjs": "^3.0.0"
   }
 }
