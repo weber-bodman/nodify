@@ -16,6 +16,6 @@
   "author": "Maximilian Weber",
   "license": "ISC",
   "dependencies": {
-    "http-server": "^0.9.0"
+    "nodejs-websocket": "^1.7.1"
   }
 }
