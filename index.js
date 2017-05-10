@@ -32,15 +32,15 @@ var httpServer = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"});
 
   var params = url.parse(request.url, true);
+  params.timestamp = new Date().getTime();
 
   if(params.query && "client" in params.query && "payload" in params.query) {
     var clientId = params.query.client;
-    var payload = params.query.payload;
 
-    if(clients[clientId] && payload && clients[clientId].readyState == clients[clientId].OPEN) {
-        clients[clientId].sendText(payload);
-        console.log("Client nodified: " + clientId + " -> " + payload);
-        response.write("Client nodified: " + clientId + " -> " + payload + "\n");
+    if(clients[clientId] && clients[clientId].readyState == clients[clientId].OPEN) {
+        clients[clientId].sendText(JSON.stringify(params));
+        console.log("Client nodified: " + clientId);
+        response.write("Client nodified: " + clientId + "\n");
     }
   }
 
