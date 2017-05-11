@@ -34,7 +34,7 @@ var httpServer = http.createServer(function (request, response) {
   var params = url.parse(request.url, true);
   params.timestamp = new Date().getTime();
 
-  if(params.query && "client" in params.query && "payload" in params.query) {
+  if(params.query && "client" in params.query) {
     var clientId = params.query.client;
 
     if(clients[clientId] && clients[clientId].readyState == clients[clientId].OPEN) {
