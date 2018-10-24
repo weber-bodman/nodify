@@ -34,6 +34,8 @@ var httpServer = http.createServer(function (request, response) {
   var params = url.parse(request.url, true);
   params.timestamp = new Date().getTime();
 
+  //console.log(request.url);
+
   if(params.query && "client" in params.query) {
     var clientId = params.query.client;
 
