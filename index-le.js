@@ -41,14 +41,14 @@ wss.on('connect', function connection(conn) {
         if (index > -1) {
             clients.splice(index, 1);
         }
-        console.log("Client released (" + code + ', ' + reason + "): " + clientId)
+        console.log("Client released (" + code + ', ' + reason + "): " + clientId);
     });
     conn.on("error", function (code, reason) {
         var index = clients.indexOf(clientId);
         if (index > -1) {
             clients.splice(index, 1);
         }
-        console.log("Client error (" + code + ', ' + reason + "): " + clientId)
+        console.log("Client error (" + code + ', ' + reason + "): " + clientId);
     });
 });
 
